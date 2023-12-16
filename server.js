@@ -4,8 +4,12 @@ const app = express()
 const cors = require("cors");
 
 const bodyParser = require('body-parser'); // middleware making object 
-app.use(cors()); // middleware 
 app.use(bodyParser.json());
+
+app.use(cors({
+    origin: 'http://server-production-e885.up.railway.app',
+    credentials: true,  // Enable credentials (e.g., cookies, authentication headers)
+  }));
 
 const uri = 'mongodb+srv://dgp2115:pasSword1212@cluster0.kmzjqfw.mongodb.net/?retryWrites=true&w=majority'
 
