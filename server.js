@@ -2,6 +2,10 @@ const express = require('express')
 const {MongoClient, ObjectId} = require('mongodb');
 const app = express()
 
+const bodyParser = require('body-parser'); // middleware making object 
+app.use(cors()); // middleware 
+app.use(bodyParser.json());
+
 const uri = 'mongodb+srv://dgp2115:pasSword1212@cluster0.kmzjqfw.mongodb.net/?retryWrites=true&w=majority'
 
 const client = new MongoClient(uri); // creating instance 
