@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'http://server-production-e885.up.railway.app',
+    origin: 'https://server-production-e885.up.railway.app',
     credentials: true,  // Enable credentials (e.g., cookies, authentication headers)
   }));
 
