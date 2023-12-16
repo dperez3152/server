@@ -1,6 +1,7 @@
 const express = require('express')
 const {MongoClient, ObjectId} = require('mongodb');
 const app = express()
+const cors = require("cors");
 
 const bodyParser = require('body-parser'); // middleware making object 
 app.use(cors()); // middleware 
