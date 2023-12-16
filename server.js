@@ -6,6 +6,8 @@ const cors = require("cors");
 const bodyParser = require('body-parser'); // middleware making object 
 app.use(bodyParser.json());
 
+const port = process.env.PORT || 3000;
+
 app.use(cors({
     origin: 'http://server-production-e885.up.railway.app',
     credentials: true,  // Enable credentials (e.g., cookies, authentication headers)
@@ -21,7 +23,7 @@ async function main(){
         // Connect to the MongoDB cluster
         await client.connect();
         console.log("Connected to MongoDB");
-        app.listen(5000,()=>{console.log("server started on port 5000")});
+        app.listen(port, "0.0.0.0", ()=>{console.log("server started on port {port}")});
  
     } catch (e) {
         console.error(e);
