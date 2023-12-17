@@ -31,14 +31,14 @@ async function main(){
 }
 
 app.get("/api/notes", async (req, res) =>{
-    res.header('Access-Control-Allow-Origin', 'https://keeper-app-midterm-3v8f8cyga-daniela-perezs-projects.vercel.app');
+    /*res.header('Access-Control-Allow-Origin', 'https://keeper-app-midterm-3v8f8cyga-daniela-perezs-projects.vercel.app');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Credentials', 'true');*/
 
     try {
-    const data = await db.collection("notes").find().toArray();
-    res.send(data);
+        const data = await db.collection("notes").find().toArray();
+        res.send(data);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
