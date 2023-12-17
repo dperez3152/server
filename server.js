@@ -28,14 +28,6 @@ async function main(){
     }
 }
 
-/*app.options("/api/notes", (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'https://keeper-app-midterm-bqpq8eknf-daniela-perezs-projects.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.status(204).send(); // No Content for preflight requests
-});*/
-
 app.get("/api/notes", async (req, res) =>{
     try {
         const data = await db.collection("notes").find().toArray();
