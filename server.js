@@ -5,18 +5,16 @@ const bodyParser = require('body-parser');
 
 const app = express()
 app.use(bodyParser.json());
-
-const port = process.env.PORT || 3000;
-
 app.use(cors({
     origin: 'https://keeper-app-midterm-daniela-perezs-projects.vercel.app',
-    credentials: true,  // Enable credentials (e.g., cookies, authentication headers)
+    credentials: true,
   }));
 
 const uri = 'mongodb+srv://dgp2115:pasSword1212@cluster0.kmzjqfw.mongodb.net/?retryWrites=true&w=majority'
+const client = new MongoClient(uri);
+const db = client.db("NotesAppDatabase"); 
 
-const client = new MongoClient(uri); // creating instance 
-const db = client.db("NotesAppDatabase"); // referrencing db
+const port = process.env.PORT || 3000;
 
 async function main(){
     try {
@@ -64,13 +62,13 @@ app.post("/api/notes", async (req, res) => {
 app.delete('/api/notes/:id', async (req, res) => {
     const idToDelete = req.params.id;
     try {
-        const deletedName = await db.collection("notes").deleteOne({ _id: new ObjectId(idToDelete) });
+        const deletedNote = await db.collection("notes").deleteOne({ _id: new ObjectId(idToDelete) });
 
-        if (!deletedName) {
-            return res.status(404).json({ message: 'Name not found' });
+        if (!deletedNote) {
+            return res.status(404).json({ message: 'Note not found' });
         }
 
-        res.json({ message: 'Note deleted successfully', deletedName });
+        res.json({ message: 'Note deleted successfully', deletedNote });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
