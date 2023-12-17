@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'https://server-production-e885.up.railway.app',
+    origin: 'https://keeper-app-midterm-daniela-perezs-projects.vercel.app',
     credentials: true,  // Enable credentials (e.g., cookies, authentication headers)
   }));
 
@@ -23,7 +23,7 @@ async function main(){
         // Connect to the MongoDB cluster
         await client.connect();
         console.log("Connected to MongoDB");
-        app.listen(port, "0.0.0.0", ()=>{console.log("server started on port {port}")});
+        app.listen(port, "0.0.0.0", ()=>{console.log("server started on port ${port}")});
  
     } catch (e) {
         console.error(e);
@@ -44,6 +44,7 @@ app.get("/api/notes", async (req, res) =>{
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
+
 app.post("/api/notes", async (req, res) => {
     try {
         console.log("req received");
